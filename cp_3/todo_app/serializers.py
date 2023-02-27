@@ -13,7 +13,6 @@ class TodoListSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
-        instance.description = validated_data.get('description', instance.description)
         instance.save()
         return instance
 
@@ -22,7 +21,7 @@ class TodoSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(min_length=1, max_length=100, allow_null=False, default='Product Name')
     todo_list = TodoListSerializer(read_only=True)
-    category_id = serializers.IntegerField(write_only=True)
+    todo_list_id = serializers.IntegerField(write_only=True)
 
     def create(self, validated_data):
         todo = Todo(**validated_data)
