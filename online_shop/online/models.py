@@ -1,41 +1,29 @@
 from django.db import models
 
-# Create your models here.
-class Category(models.Model):
+
+class TodoList(models.Model):
     name = models.CharField(max_length=255, null=False)
 
-    def __str__(self):
-        return 'ID: {}, name: {}'.format(self.id, self.name)
-    
-    def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-        }
-    
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = 'TodoList'
+        verbose_name_plural = 'TodoLists'
 
-class Product(models.Model):
-    code = models.CharField(max_length=32, null=False, unique=True)
+    def __str__(self):
+        return 'ID: {}, Name: {}'.format(self.id, self.name)
+
+
+class Todo(models.Model):
     name = models.CharField(max_length=255, null=False)
-    price = models.IntegerField(null=False)
-    category = models.ForeignKey(Category, on_delete=models.RESTRICT, null=False)
+    done = models.BooleanField(default=False, null=False)
+    todo_list = models.ForeignKey(TodoList, null=False, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = 'Product'
-        verbose_name_plural = 'Products'
+        verbose_name = 'Todo'
+        verbose_name_plural ='Todos'
 
     def __str__(self):
-        return 'ID: {}, name: {}, code: {}'.format(self.id, self.name, self.code)
+        return 'ID: {}, Name: {}'.format(self.id, self.name)
 
-    def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'code': self.code,
-            'category': self.category.to_json()
-        }
+
 
 
