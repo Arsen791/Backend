@@ -37,3 +37,7 @@ def register_page(request):
             return redirect('/auth/login/')
         else:
             return render(request, 'user/registration.html', {'form':form})
+        
+def logout_page(request):
+    logout(request)
+    return redirect('/auth/login/')
