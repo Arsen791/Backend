@@ -1,6 +1,8 @@
 from django.urls import path
 from blogs.views import home_page, create_blog, blog_details, delete_blog, create_blogs_post, \
     delete_post, post_details
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', home_page, name='home_page'),
@@ -12,3 +14,5 @@ urlpatterns = [
     path('posts/<int:pk>/', post_details, name='post_details')
 ]
 
+urlpatterns += static(settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT)

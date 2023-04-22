@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from blogs.models import Blog, Post
 from blogs.forms import CreateBlogForm, CreatePostForm
+from user.models import Profile
 
 
 def home_page(request):
