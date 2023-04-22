@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import auth
 from django.contrib.auth import login
 from user.forms import UserRegistrationForm, LoginForm
+from user.models import Profile
 
 
 def login_page(request):
@@ -11,6 +12,11 @@ def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
+            try:
+                profile = Profile.objects.get(owner_id=user.id)
+            except:
+                profile = Profile (owner_id=user.id)
+                profile.save()
             user = auth.authenticate(username=form.data.get('username'), password=form.data.get('password'))
             login(request, user)
             if user is not None:
@@ -29,6 +35,8 @@ def register_page(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            profile = Profile(owner_id=user.id)
+            profile. save()
             user = form.save()
             user.save()
             auth_data = auth.authenticate(request, email=user.email, password=form.data.get('password'))
