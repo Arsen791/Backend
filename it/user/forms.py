@@ -13,6 +13,11 @@ class LoginForm(Form):
 class UserRegistrationForm(ModelForm):
     repeat_password = forms.CharField(min_length=8, max_length=20, required=True, 
                                       widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Repeat Password'}))
+    CHOICES = [
+        ('PR', 'Преподаватель'),
+        ('DE', 'Декан'),
+]
+    status = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
 
 
     class Meta:
@@ -24,6 +29,7 @@ class UserRegistrationForm(ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your surname'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
+            'status': forms.ChoiceField()
         }
 
     def clean_repeat_password(self):

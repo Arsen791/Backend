@@ -7,7 +7,13 @@ class CreateNameForm(Form):
                                widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}))
     secondname = forms.CharField(required=True,
                                widget=forms.TextInput(attrs={'class': 'form-control',
-                                                                 'placeholder': 'Enter your second name'}))
+                                                                 'placeholder': 'Enter your second name'}))  
+class CreateBirthForm(Form):
+    date_of_birth = forms.DateField(required=True,
+                               widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Enter your date of birth', 'type': 'date'}))
+    place_of_birth = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                 'placeholder': 'Enter your place of birth'}))
     
 class CreateInfoForm(Form):
     specialization = forms.CharField(required=True,
@@ -18,13 +24,6 @@ class CreateInfoForm(Form):
     year_of_graduation = forms.IntegerField(required=True,
                                widget=forms.NumberInput(attrs={'class': 'form-control',
                                                                  'placeholder': 'Enter your second name', 'type':'number'}))
-    
-class CreateBirthForm(Form):
-    date_of_birth = forms.DateField(required=True,
-                               widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Enter your date of birth', 'type': 'date'}))
-    place_of_birth = forms.CharField(required=True,
-                               widget=forms.TextInput(attrs={'class': 'form-control',
-                                                                 'placeholder': 'Enter your place of birth'}))
     
 class CreateWorkForm(Form):
     organization = forms.CharField(required=True,
@@ -48,3 +47,24 @@ class CreateMedicineForm(Form):
     medicine_date = forms.DateField(required=True,
                                widget=forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Enter your medicine date  ', 'type': 'date'}))
     
+class CreateMasterForm(Form):
+    master_degree = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Yes or No   '}))
+    
+class CreateDoctorForm(Form):
+    doctor_profile = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Yes or No   '}))
+    
+class CreatePhdForm(Form):
+    phd_record = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Yes or No   '}))
+
+class CreateProfessorForm(Form):
+    docent_professor = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Yes or No   '})) 
+class CreateSportForm(Form):
+    sport_degree = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Yes or No   '}))
+class CreateSubjectForm(Form):
+    subject_of_teaching = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your subject of teaching '}))
