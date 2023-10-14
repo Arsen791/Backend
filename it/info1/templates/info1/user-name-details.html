@@ -15,30 +15,36 @@
           <div style="margin-left: 50px;"><a class="q" aria-current="page" href="/auth/logout">Logout</a></div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">{{user_name.firstname}}</h3>
-      {% if user.id == user_name.owner.id %}
-        <a class="delete-btn" href="/info1/{{user_name.id}}/delete/">Delete blog</a>
-      {% endif %}
+  <div class="card-1">
+    <div class="card+1">
+      <div class="card-header">
+        <div>
+        <h3 class="card-title">{{user_name.firstname}}</h3>
+        <p class="card-text">{{user_name.secondname}}</p>
+      </div>
+        {% if user.id == user_name.owner.id %}
+          <a class="delete-btn" href="/info1/{{user_name.id}}/delete/">Delete blog</a>
+        {% endif %}
+      </div>
     </div>
-    <div class="card-body">
-      <p class="card-text">{{user_name.secondname}}</p>
+
       {% if user.id == user_name.owner.id and user_births|length == 0 %}
-        <form action="/info1/{{user_name.id}}/user_births-create" method="POST" novalidate>
-          <h4>Write something new here:</h4>
-          {% csrf_token %}
-          {% for field in form %}
-            <div class="field-wrapper">
-              {{ field.label_tag }} {{ field }}
-              <div class="text-danger">
-                {{ field.errors }}
-              </div>
+    <form action="/info1/{{user_name.id}}/user_births-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
             </div>
-          {% endfor %}
-          <button class="btn btn-primary" type="submit">Create</button>
-        </form>
-      {% endif %}
+        {% endfor %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
+    </form>
+{% endif %}
+
       {% if user_births|length %}
         <div class="card-group">
           {% for user_birth in user_births %}
@@ -64,21 +70,23 @@
       {% endif %}
     </div>
 
-  {% if user.id == user_name.owner.id and user_infos|length == 0 %}
-  <form action="/info1/{{user_name.id}}/user_infos-create" method="POST" novalidate>
-    <h4>Write something new here:</h4>
-    {% csrf_token %}
-    {% for field in form1 %}
-      <div class="field-wrapper">
-        {{ field.label_tag }} {{ field }}
-        <div class="text-danger">
-          {{ field.errors }}
-        </div>
-      </div>
-    {% endfor %}
-    <button class="btn btn-primary" type="submit">Create</button>
-  </form>
+    {% if user.id == user_name.owner.id and user_infos|length == 0 %}
+    <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/user_infos-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
+        {% csrf_token %}
+        {% for field in form1 %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
+    </form>
 {% endif %}
+
     {% if user_infos|length %}
                 <div class="card-group">
                   {% for user_info in user_infos %}
@@ -103,21 +111,23 @@
         </div>
       {% endif %}
 
-      {% if user.id == user_name.owner.id and user_works|length == 0 %}
-      <form action="/info1/{{user_name.id}}/user_works-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
+  {% if user.id == user_name.owner.id and user_works|length == 0 %}
+    <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/user_works-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
         {% csrf_token %}
         {% for field in form2 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
-            <div class="text-danger">
-              {{ field.errors }}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
             </div>
-          </div>
         {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
+    </form>
+{% endif %}
+
       {% if user_works|length %}
        <div class="card-group">
           {% for user_work in user_works %}        
@@ -141,20 +151,22 @@
     {% endif %}
 
     {% if user.id == user_name.owner.id and practices|length == 0 %}
-      <form action="/info1/{{user_name.id}}/practices-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
+    <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/practices-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
         {% csrf_token %}
         {% for field in form3 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
-            <div class="text-danger">
-              {{ field.errors }}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
             </div>
-          </div>
         {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
+    </form>
+{% endif %}
+
     {% if practices|length %}
     <div class="card-group">
        {% for practice in practices %}        
@@ -176,21 +188,23 @@
    </div>
  {% endif %}
 
-    {% if user.id == user_name.owner.id and criminals|length == 0 %}
-      <form action="/info1/{{user_name.id}}/criminals-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
-        {% csrf_token %}
-        {% for field in form4 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
-            <div class="text-danger">
-              {{ field.errors }}
-            </div>
-          </div>
-        {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+ {% if user.id == user_name.owner.id and criminals|length == 0 %}
+ <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/criminals-create" method="POST" novalidate>
+     <h4 class="form-title">Write something new here:</h4>
+     {% csrf_token %}
+     {% for field in form4 %}
+         <div class="form-group">
+             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+             {{ field }}
+             <div class="text-danger">
+                 {{ field.errors }}
+             </div>
+         </div>
+     {% endfor %}
+     <button class="btn btn-primary form-btn" type="submit">Create</button>
+ </form>
+{% endif %}
+
     {% if criminals|length %}
        <div class="card-group">
           {% for criminal in criminals %}        
@@ -213,20 +227,22 @@
     {% endif %}
 
     {% if user.id == user_name.owner.id and medicines|length == 0 %}
-      <form action="/info1/{{user_name.id}}/medicines-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
+    <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/medicines-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
         {% csrf_token %}
         {% for field in form5 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
-            <div class="text-danger">
-              {{ field.errors }}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
             </div>
-          </div>
         {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
+    </form>
+{% endif %}
+
     {% if medicines|length %}
     <div class="card-group">
        {% for medicine in medicines %}        
@@ -249,21 +265,23 @@
    </div>
  {% endif %}
 
-    {% if user.id == user_name.owner.id and masters|length == 0 %}
-      <form action="/info1/{{user_name.id}}/masters-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
-        {% csrf_token %}
-        {% for field in form6 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
-            <div class="text-danger">
-              {{ field.errors }}
-            </div>
-          </div>
-        {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+ {% if user.id == user_name.owner.id and masters|length == 0 %}
+ <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/masters-create" method="POST" novalidate>
+     <h4 class="form-title">Write something new here:</h4>
+     {% csrf_token %}
+     {% for field in form6 %}
+         <div class="form-group">
+             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+             {{ field }}
+             <div class="text-danger">
+                 {{ field.errors }}
+             </div>
+         </div>
+     {% endfor %}
+     <button class="btn btn-primary form-btn" type="submit">Create</button>
+ </form>
+{% endif %}
+
     {% if masters|length %}
     <div class="card-group">
        {% for master in masters %}        
@@ -285,21 +303,23 @@
    </div>
  {% endif %}
 
-    {% if user.id == user_name.owner.id and doctors|length == 0 %}
-    <form action="/info1/{{user_name.id}}/doctors-create" method="POST" novalidate>
-      <h4>Write something new here:</h4>
-      {% csrf_token %}
-      {% for field in form7 %}
-        <div class="field-wrapper">
-          {{ field.label_tag }} {{ field }}
-          <div class="text-danger">
-            {{ field.errors }}
-          </div>
-        </div>
-      {% endfor %}
-      <button class="btn btn-primary" type="submit">Create</button>
-    </form>
-  {% endif %}
+ {% if user.id == user_name.owner.id and doctors|length == 0 %}
+ <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/doctors-create" method="POST" novalidate>
+   <h4 class="form-title">Write something new here:</h4>
+   {% csrf_token %}
+   {% for field in form7 %}
+     <div class="form-group">
+       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+       {{ field }}
+       <div class="text-danger">
+         {{ field.errors }}
+       </div>
+     </div>
+   {% endfor %}
+   <button class="btn btn-primary form-btn" type="submit">Create</button>
+ </form>
+{% endif %}
+
   {% if doctors|length %}
   <div class="card-group">
      {% for doctor in doctors %}        
@@ -321,21 +341,23 @@
  </div>
 {% endif %}
 
-    {% if user.id == user_name.owner.id and phds|length == 0 %}
-    <form action="/info1/{{user_name.id}}/phds-create" method="POST" novalidate>
-      <h4>Write something new here:</h4>
-      {% csrf_token %}
-      {% for field in form8 %}
-        <div class="field-wrapper">
-          {{ field.label_tag }} {{ field }}
-          <div class="text-danger">
-            {{ field.errors }}
-          </div>
-        </div>
-      {% endfor %}
-      <button class="btn btn-primary" type="submit">Create</button>
+{% if user.id == user_name.owner.id and phds|length == 0 %}
+    <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/phds-create" method="POST" novalidate>
+        <h4 class="form-title">Write something new here:</h4>
+        {% csrf_token %}
+        {% for field in form8 %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary form-btn" type="submit">Create</button>
     </form>
-  {% endif %}
+{% endif %}
+
   {% if phds|length %}
   <div class="card-group">
      {% for phd in phds %}        
@@ -357,21 +379,23 @@
  </div>
 {% endif %}
 
-    {% if user.id == user_name.owner.id and professors|length == 0 %}
-      <form action="/info1/{{user_name.id}}/professors-create" method="POST" novalidate>
-        <h4>Write something new here:</h4>
-        {% csrf_token %}
-        {% for field in form9 %}
-          <div class="field-wrapper">
-            {{ field.label_tag }} {{ field }}
+{% if user.id == user_name.owner.id and professors|length == 0 %}
+<form style="margin-left: 20px;" action="/info1/{{user_name.id}}/professors-create" method="POST" novalidate>
+    <h4 class="form-title">Write something new here:</h4>
+    {% csrf_token %}
+    {% for field in form9 %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
             <div class="text-danger">
-              {{ field.errors }}
+                {{ field.errors }}
             </div>
-          </div>
-        {% endfor %}
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form>
-    {% endif %}
+        </div>
+    {% endfor %}
+    <button class="btn btn-primary form-btn" type="submit">Create</button>
+</form>
+{% endif %}
+
     {% if professors|length %}
     <div class="card-group">
        {% for professor in professors %}        
@@ -393,21 +417,23 @@
    </div>
  {% endif %}
 
-    {% if user.id == user_name.owner.id and sports|length == 0 %}
-    <form action="/info1/{{user_name.id}}/sports-create" method="POST" novalidate>
-      <h4>Write something new here:</h4>
-      {% csrf_token %}
-      {% for field in form10 %}
-        <div class="field-wrapper">
-          {{ field.label_tag }} {{ field }}
-          <div class="text-danger">
-            {{ field.errors }}
-          </div>
-        </div>
-      {% endfor %}
-      <button class="btn btn-primary" type="submit">Create</button>
-    </form>
-  {% endif %}
+ {% if user.id == user_name.owner.id and sports|length == 0 %}
+ <form style="margin-left: 20px;" action="/info1/{{user_name.id}}/sports-create" method="POST" novalidate>
+     <h4 class="form-title">Write something new here:</h4>
+     {% csrf_token %}
+     {% for field in form10 %}
+         <div class="form-group">
+             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+             {{ field }}
+             <div class="text-danger">
+                 {{ field.errors }}
+             </div>
+         </div>
+     {% endfor %}
+     <button class="btn btn-primary form-btn" type="submit">Create</button>
+ </form>
+{% endif %}
+
   {% if sports|length %}
   <div class="card-group">
      {% for sport in sports %}        
@@ -429,21 +455,23 @@
  </div>
 {% endif %}
 
-    {% if user.id == user_name.owner.id and subjects|length == 0 %}
-    <form action="/info1/{{user_name.id}}/subjects-create" method="POST" novalidate>
-      <h4>Write something new here:</h4>
-      {% csrf_token %}
-      {% for field in form11 %}
-        <div class="field-wrapper">
-          {{ field.label_tag }} {{ field }}
-          <div class="text-danger">
-            {{ field.errors }}
-          </div>
+{% if user.id == user_name.owner.id and subjects|length == 0 %}
+<form style="margin-left: 20px;" action="/info1/{{user_name.id}}/subjects-create" method="POST" novalidate>
+    <h4 class="form-title">Write something new here:</h4>
+    {% csrf_token %}
+    {% for field in form11 %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
         </div>
-      {% endfor %}
-      <button class="btn btn-primary" type="submit">Create</button>
-    </form>
-  {% endif %}
+    {% endfor %}
+    <button class="btn btn-primary form-btn" type="submit">Create</button>
+</form>
+{% endif %}
+
   {% if subjects|length %}
   <div class="card-group">
      {% for subject in subjects %}        
@@ -497,7 +525,8 @@
   }
 
 
-  .card {
+  .card-1 {
+  
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -505,54 +534,161 @@
   margin-bottom: 20px;
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.card-header h3 {
-  margin: 0;
-}
-
-.card-body {
-  padding: 0;
-}
-
 .card-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 0 -10px;
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.card {
+ 
+  width: calc(33.33% - 20px);
+  margin: 0 10px 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
   margin-top: 10px;
 }
 
-.card-group .card {
-  width: 30%;
-  margin-bottom: 10px;
+.card:hover {
+  transform: translateY(-5px);
 }
 
-.card-group .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #004282;
+}
+
+.card-text {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #004182d0;
 }
 
 .delete-btn {
-  color: #fff;
+  display: inline-block;
+  padding: 8px 16px;
   background-color: #dc3545;
-  border-color: #dc3545;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 10px;
+  margin-left: 15px;
   text-decoration: none;
-  font-size: 14px;
 }
 
 .delete-btn:hover {
   background-color: #c82333;
-  border-color: #bd2130;
-  cursor: pointer;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+
+.form-title {
+  color: #004282;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 550;
+  color: #004182d0;
+}
+
+
+input[type=date] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+  color: #555;
+}
+
+input[type=number] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+  color: #555;
+}
+
+input[type=number]:focus {
+  border-color: #0a315a;
+  box-shadow: 0 0 0 0.05rem #004282;
+}
+
+
+.form-group input[type=date]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #004282;
+  box-shadow: 0 0 0 0.05rem #004282;
+}
+
+
+.form-group input[type=text],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group input[type=text]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #004282;
+  box-shadow: 0 0 0 0.05rem #004282;
+}
+
+.form-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #004282;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-btn:hover {
+  background-color: #004182c4;
+}
+
 
   </style>
 </body>

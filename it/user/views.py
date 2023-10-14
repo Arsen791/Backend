@@ -3,7 +3,7 @@ from user.forms import UserRegistrationForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import login, logout
 
-# Create your views here.
+
 def login_page(request):
     if request.method == 'GET':
         form = LoginForm()
